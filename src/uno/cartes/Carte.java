@@ -1,27 +1,32 @@
 package cartes;
 
-import comportement.Comportement;
+import comportement.ComportementCarte;
+
+
 
 public class Carte {
-    private String couleur;
-    private String valeur;
+    enum Couleur {
+        ROUGE, BLEU, VERT, JAUNE, NOIR
+    }
+    private Couleur couleur;
+    private Integer valeur;
 
-    private Comportement comportement;
+    private ComportementCarte comportementCarte;
 
-    public Carte(CarteBuilder carteBuilder) {
-        this.couleur = carteBuilder.couleur;
-        this.valeur = carteBuilder.valeur;
-        this.comportement = carteBuilder.comportement;
+    public Carte(Couleur couleur, Integer valeur, ComportementCarte comportementCarte) {
+        this.couleur = couleur;
+        this.valeur = valeur;
+        this.comportementCarte = comportementCarte;
     }
 
-    public String getCouleur() {
+    public Couleur getCouleur() {
         return couleur;
     }
 
-    public String getValeur() {
+    public Integer getValeur() {
         return valeur;
     }
-    public Comportement getComportement() {
-        return comportement;
+    public ComportementCarte getComportement() {
+        return comportementCarte;
     }
 }
