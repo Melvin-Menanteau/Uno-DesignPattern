@@ -9,6 +9,8 @@ public class JoueurHumain implements Joueur{
     private String nom;
     private ArrayList<Carte> main;
 
+
+
     public JoueurHumain(String nom) {
         this.nom = nom;
         this.main = new ArrayList<Carte>();
@@ -29,17 +31,17 @@ public class JoueurHumain implements Joueur{
     }
 
     @Override
-    public void addObserver(JoueurObserver observer) {
+    public void rejoindrePartie(JoueurObserver observer) {
 
     }
 
     @Override
-    public void removeObserver(JoueurObserver observer) {
+    public void quitterPartie(JoueurObserver observer) {
 
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyParties() {
 
     }
 }
