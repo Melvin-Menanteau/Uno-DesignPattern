@@ -1,16 +1,10 @@
 package uno.joueurs;
 
-
 import uno.cartes.Carte;
-
 import java.util.ArrayList;
+import uno.Partie;
 
-public class JoueurHumain implements Joueur{
-    private String nom;
-    private ArrayList<Carte> deck;
-
-
-
+public class JoueurHumain extends Joueur{
     public JoueurHumain(String nom) {
         System.out.println("Création joueur humain " + nom);
 
@@ -19,14 +13,15 @@ public class JoueurHumain implements Joueur{
     }
 
     @Override
-    public void piocher(Carte carte) {
-        deck.add(carte);
+    public void piocher() {
+        deck.add(Partie.getCarte());
     }
 
     @Override
-    public void jouerCarte(Carte carte) {
-        carte.jouerCarte();
-        deck.remove(carte);
+    public void jouerCarte() {
+        // Methode tres basique pour tester le comportement des cartes
+        deck.get(0).jouerCarte();
+        deck.remove(0);
     }
 
     public String getNom() {

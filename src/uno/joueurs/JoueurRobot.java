@@ -1,29 +1,26 @@
 package uno.joueurs;
 
-
 import uno.cartes.Carte;
-
 import java.util.ArrayList;
+import uno.Partie;
 
-public class JoueurRobot implements Joueur{
-    private String nom;
-    private ArrayList<Carte> main;
-
+public class JoueurRobot extends Joueur{
     public JoueurRobot(String nom) {
         System.out.println("Création joueur robot " + nom);
 
         this.nom = nom;
-        this.main = new ArrayList<Carte>();
+        this.deck = new ArrayList<Carte>();
     }
 
     @Override
-    public void piocher(Carte carte) {
-        main.add(carte);
+    public void piocher() {
+        deck.add(Partie.getCarte());
     }
 
     @Override
-    public void jouerCarte(Carte carte) {
-        main.remove(carte);
+    public void jouerCarte() {
+        deck.get(0).jouerCarte();
+        deck.remove(0);
     }
 
     public String getNom() {

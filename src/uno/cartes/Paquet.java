@@ -1,5 +1,6 @@
 package uno.cartes;
 
+import java.util.Collections;
 import java.util.ArrayList;
 
 public class Paquet {
@@ -37,6 +38,16 @@ public class Paquet {
             carteBuilder.setComportement(Carte.Action.COULEUR);
             cartes.add(carteBuilder.build());
         }
+
+        Collections.shuffle(cartes);
+    }
+
+    public Carte getCarte() {
+        //TODO: Gerer le cas ou il n'y a plus de carte a piocher (creer une liste avec toutes les cartes deja jouees, puis les melangees et les reutilisees?)
+        if (cartes.size() > 0)
+            return cartes.remove(0);
+
+        return null;
     }
 
     public ArrayList<Carte> getCartes() {
