@@ -3,8 +3,6 @@ import uno.Partie;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Partie partie = new Partie(2);
     }
-
-
 }

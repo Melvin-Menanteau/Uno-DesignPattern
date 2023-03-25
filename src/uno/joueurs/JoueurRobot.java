@@ -10,6 +10,8 @@ public class JoueurRobot implements Joueur{
     private ArrayList<Carte> main;
 
     public JoueurRobot(String nom) {
+        System.out.println("Création joueur robot " + nom);
+
         this.nom = nom;
         this.main = new ArrayList<Carte>();
     }

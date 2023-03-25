@@ -2,14 +2,24 @@ package uno.cartes;
 
 import uno.comportement.*;
 
-public class CarteBuilder implements CarteSimple {
+public class CarteBuilder implements CarteBuilderInterface {
     private Carte carte;
     private Carte.Couleur couleur;
     private Integer valeur;
     private ComportementCarte comportementCarte;
 
+    public CarteBuilder() {
+        this.reset();
+    }
+
     public Carte build() {
         return new Carte(this.couleur, this.valeur, this.comportementCarte);
+    }
+
+    public void reset() {
+        this.couleur = Carte.Couleur.NOIR;
+        this.valeur = 0;
+        this.comportementCarte = new ComportementCarteNormal();
     }
 
     public CarteBuilder setCouleur(Carte.Couleur couleur) {
@@ -22,22 +32,26 @@ public class CarteBuilder implements CarteSimple {
         return this;
     }
 
-    public CarteBuilder setComportement(String action) {
+    public CarteBuilder setComportement(Carte.Action action) {
         switch (action) {
-            case "inversion":
+            case INVERSION:
                 this.comportementCarte = new ComportementCarteInversion();
                 break;
-            case "couleur":
+            case COULEUR:
                 this.comportementCarte = new ComportementCarteCouleur();
                 break;
-            case "bloque":
+            case BLOQUE:
                 this.comportementCarte = new ComportementCarteBloque();
+                break;
+            case PLUS2:
+            case PLUS4:
+                //TODO: Nombre de carte a piocher en parametre?
+                this.comportementCarte = new ComportementCartePlus();
                 break;
             default:
                 this.comportementCarte = null;
                 break;
         }
-        this.comportementCarte = comportementCarte;
         return this;
     }
 }

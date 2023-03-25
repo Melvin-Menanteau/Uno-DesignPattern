@@ -6,6 +6,11 @@ public class Carte {
     enum Couleur {
         ROUGE, BLEU, VERT, JAUNE, NOIR
     }
+
+    enum Action {
+        INVERSION, BLOQUE, PLUS2, PLUS4, COULEUR
+    }
+
     private Couleur couleur;
     private Integer valeur;
     private ComportementCarte comportementCarte;
@@ -42,5 +47,14 @@ public class Carte {
     }
     public ComportementCarte getComportement() {
         return comportementCarte;
+    }
+
+    public void jouerCarte() {
+        comportementCarte.jouerCarte();
+    }
+
+    @Override
+    public String toString() {
+        return "Carte [couleur=" + couleur + ", valeur=" + valeur + ", action=" + comportementCarte + "]";
     }
 }
