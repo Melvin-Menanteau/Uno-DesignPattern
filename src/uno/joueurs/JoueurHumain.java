@@ -1,7 +1,7 @@
-package joueurs;
+package uno.joueurs;
 
 
-import cartes.Carte;
+import uno.cartes.Carte;
 
 import java.util.ArrayList;
 

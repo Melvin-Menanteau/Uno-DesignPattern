@@ -1,4 +1,4 @@
-package joueurs;
+package uno.joueurs;
 
 public interface EtatJoueur {
     public void rejoindrePartie(JoueurObserver observer);

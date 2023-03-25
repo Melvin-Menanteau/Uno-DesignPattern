@@ -1,4 +1,4 @@
-package comportement;
+package uno.comportement;
 
 public class ComportementCarteInversion implements ComportementCarte {
     @Override

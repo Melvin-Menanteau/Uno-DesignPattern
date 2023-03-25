@@ -1,7 +1,6 @@
-package cartes;
+package uno.cartes;
 
-import cartes.Carte;
-import comportement.*;
+import uno.comportement.*;
 
 public class CarteBuilder implements CarteSimple {
     private Carte carte;

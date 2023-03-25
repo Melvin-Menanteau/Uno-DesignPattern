@@ -1,4 +1,5 @@
-import joueurs.JoueurObserver;
+package uno;
+import uno.Partie;
 
 public class Main {
     public static void main(String[] args) {

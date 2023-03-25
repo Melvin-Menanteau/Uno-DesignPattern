@@ -1,7 +1,7 @@
-package joueurs;
+package uno.joueurs;
 
 
-import cartes.Carte;
+import uno.cartes.Carte;
 
 public interface Joueur extends EtatJoueur {
     public void piocher(Carte carte);
