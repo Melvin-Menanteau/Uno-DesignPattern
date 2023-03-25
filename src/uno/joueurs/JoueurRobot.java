@@ -1,5 +1,8 @@
 package joueurs;
 
+
+import cartes.Carte;
+
 import java.util.ArrayList;
 
 public class JoueurRobot implements Joueur{

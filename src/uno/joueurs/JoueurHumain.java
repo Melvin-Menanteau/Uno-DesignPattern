@@ -1,6 +1,9 @@
 package joueurs;
 
-import uno.Carte;
+
+import cartes.Carte;
+
+import java.util.ArrayList;
 
 public class JoueurHumain implements Joueur{
     private String nom;
