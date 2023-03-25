@@ -5,7 +5,6 @@ import comportement.Comportement;
 public class Carte {
     private String couleur;
     private String valeur;
-
     private Comportement comportement;
 
     public Carte(CarteBuilder carteBuilder) {
