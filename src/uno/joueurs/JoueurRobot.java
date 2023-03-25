@@ -27,4 +27,19 @@ public class JoueurRobot implements Joueur{
     public String getNom() {
         return nom;
     }
+
+    @Override
+    public void addObserver(JoueurObserver observer) {
+
+    }
+
+    @Override
+    public void removeObserver(JoueurObserver observer) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
+    }
 }
