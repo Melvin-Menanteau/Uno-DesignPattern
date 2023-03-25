@@ -16,11 +16,15 @@ public class JoueurRobot implements Joueur{
 
     @Override
     public void piocher(Carte carte) {
-
+        main.add(carte);
     }
 
     @Override
     public void jouerCarte(Carte carte) {
+        main.remove(carte);
+    }
 
+    public String getNom() {
+        return nom;
     }
 }
