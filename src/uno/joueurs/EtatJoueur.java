@@ -1,7 +1,7 @@
 package joueurs;
 
 public interface EtatJoueur {
-    public void addObserver(JoueurObserver observer);
-    public void removeObserver(JoueurObserver observer);
-    public void notifyObservers();
+    public void rejoindrePartie(JoueurObserver observer);
+    public void quitterPartie(JoueurObserver observer);
+    public void notifyParties();
 }

@@ -28,18 +28,19 @@ public class JoueurRobot implements Joueur{
         return nom;
     }
 
+
     @Override
-    public void addObserver(JoueurObserver observer) {
+    public void rejoindrePartie(JoueurObserver observer) {
 
     }
 
     @Override
-    public void removeObserver(JoueurObserver observer) {
+    public void quitterPartie(JoueurObserver observer) {
 
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyParties() {
 
     }
 }
