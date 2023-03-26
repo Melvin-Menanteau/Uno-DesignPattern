@@ -1,30 +1,14 @@
 package uno.cartes;
 
-
 import uno.comportement.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class CarteBuilder implements CarteBuilderInterface {
-    private Carte carte;
     private Carte.Couleur couleur;
     private Integer valeur;
     private ComportementCarte comportementCarte;
 
-    // factory to create comportementCarte
-    private Map<Carte.Action, ComportementCarteFactory> comportementCarteFactories;
-
     public CarteBuilder() {
         this.reset();
-        // Initialize the map of ComportementCarte factories
-        comportementCarteFactories = new HashMap<>();
-        comportementCarteFactories.put(Carte.Action.NORMAL, new ComportementCarteNormalFactory());
-        comportementCarteFactories.put(Carte.Action.INVERSION, new ComportementCarteInversionFactory());
-        comportementCarteFactories.put(Carte.Action.COULEUR, new ComportementCarteCouleurFactory());
-        comportementCarteFactories.put(Carte.Action.BLOQUE, new ComportementCarteBloqueFactory());
-        comportementCarteFactories.put(Carte.Action.PLUS2, new ComportementCartePlusFactory());
-        comportementCarteFactories.put(Carte.Action.PLUS4, new ComportementCartePlusFactory());
     }
 
     public Carte build() {
@@ -48,7 +32,25 @@ public class CarteBuilder implements CarteBuilderInterface {
     }
 
     public CarteBuilder setComportement(Carte.Action action) {
-        this.comportementCarte = comportementCarteFactories.get(action).createComportementCarte();
+        switch (action) {
+            case INVERSION:
+                this.comportementCarte = new ComportementCarteInversion();
+                break;
+            case COULEUR:
+                this.comportementCarte = new ComportementCarteCouleur();
+                break;
+            case BLOQUE:
+                this.comportementCarte = new ComportementCarteBloque();
+                break;
+            case PLUS2:
+            case PLUS4:
+                //TODO: Nombre de carte a piocher en parametre?
+                this.comportementCarte = new ComportementCartePlus();
+                break;
+            default:
+                this.comportementCarte = null;
+                break;
+        }
         return this;
     }
 }

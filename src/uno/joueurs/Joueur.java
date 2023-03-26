@@ -1,6 +1,8 @@
 package uno.joueurs;
 
 import java.util.ArrayList;
+
+import uno.Partie;
 import uno.cartes.Carte;
 
 public abstract class Joueur implements EtatJoueur {
@@ -9,10 +11,17 @@ public abstract class Joueur implements EtatJoueur {
 
     // Je ne sais pas si il faut passer une carte a cette fonction, je suis passe par une methode static pour obtenir
     // une carte depuis le paquet mais honetement je ne sais pas si c'est la bonne facon de faire
-    public abstract void piocher();
+    public void piocher() {
+        deck.add(Partie.getCarte());
+    }
 
-    // jouerCarte() ne prend pas de parametre, c'est dans cette fonction qu'il faut justement trouver la carte a jouer
-    public abstract void jouerCarte();
+    public void jouerCarte() {
+        // Methode tres basique pour tester le comportement des cartes
+        System.out.println("Joueur " + nom + " joue " + deck.get(0));
+        deck.get(0).jouerCarte();
+        deck.remove(0);
+        if (deck.size() == 0) notifyParties();
+    }
 
     //TODO: A supprimer, permet de tester le fonctionnement des cartes
     public Integer getNombreCartes() {

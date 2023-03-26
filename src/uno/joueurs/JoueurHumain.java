@@ -17,20 +17,6 @@ public class JoueurHumain extends Joueur{
         this.deck = new ArrayList<Carte>();
     }
 
-    @Override
-    public void piocher() {
-        deck.add(Partie.getCarte());
-    }
-
-    @Override
-    public void jouerCarte() {
-        // Methode tres basique pour tester le comportement des cartes
-        System.out.println("Joueur " + nom + " joue " + deck.get(0));
-        deck.get(0).jouerCarte();
-        deck.remove(0);
-        notifyParties();
-    }
-
     public String getNom() {
         return nom;
     }

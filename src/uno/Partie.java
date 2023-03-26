@@ -63,12 +63,6 @@ public class Partie implements JoueurObserver {
     @Override
     public void update() {
         // termine la partie si un joueur a gagné
-        for (Joueur joueur : joueurs) {
-            if (joueur.getNombreCartes() == 0) {
-                estTerminee = true;
-                System.out.println(joueur.getNom() + " a gagné la partie !");
-                break;
-            }
-        }
+        estTerminee = true;
     }
 }
