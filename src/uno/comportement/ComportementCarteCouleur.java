@@ -12,6 +12,6 @@ public class ComportementCarteCouleur implements ComportementCarte {
     @Override
     public void jouerCarte() {
         // set the color of the next card
-
+        System.out.println("Carte Couleur");
     };
 }

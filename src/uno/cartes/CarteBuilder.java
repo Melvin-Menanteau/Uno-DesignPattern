@@ -51,6 +51,9 @@ public class CarteBuilder implements CarteBuilderInterface {
             case PLUS4:
                 this.comportementCarte = new ComportementCartePlus(4,partie);
                 break;
+            case NORMAL:
+                this.comportementCarte = new ComportementCarteNormal();
+                break;
             default:
                 this.comportementCarte = null;
                 break;

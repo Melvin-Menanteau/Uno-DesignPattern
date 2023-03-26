@@ -22,9 +22,12 @@ public class JoueurRobot extends Joueur{
         deck.add(Partie.getCarte());
     }
 
+    // comportement du robot
     @Override
     public void jouerCarte() {
+        System.out.println("Joueur " + nom + " joue " + deck.get(0));
         boolean carteJouee = false;
+        // le robot joue la première carte qu'il peut jouer
         for (Carte carte : deck) {
             if (carte.isCarteJouable()) {
                 carte.jouerCarte();
@@ -33,9 +36,11 @@ public class JoueurRobot extends Joueur{
                 break;
             }
         }
+        // le robot n'a pas pu jouer de carte
         if (!carteJouee) {
             piocher();
         }
+        // le robot a gagné
         if (deck.size() == 0) notifyParties();
     }
 
