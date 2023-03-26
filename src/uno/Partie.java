@@ -15,13 +15,14 @@ public class Partie implements JoueurObserver {
     private ArrayList<Joueur> joueurs;
     private boolean estTerminee;
     private Integer joueurCourant = 0;
+    private boolean sensRotationHoraire = true;
     static private Plateau plateau;
 
     static public Carte getCarte() {
         return plateau.getCarte();
     }
 
-    public  Partie(Integer nombreJoueurs) {
+    public Partie(Integer nombreJoueurs) {
         System.out.println("Création de la partie");
 
         if (nombreJoueurs < 2) {
@@ -65,5 +66,23 @@ public class Partie implements JoueurObserver {
     public void update() {
         // termine la partie si un joueur a gagné
         estTerminee = true;
+    }
+
+    public void setCarteCourante(Carte carte) {
+        plateau.setCarteCourante(carte);
+    }
+
+    public Joueur getJoueurSuivant() {
+        Integer joueurSuivant;
+
+        if (sensRotationHoraire) {
+            joueurSuivant = (joueurCourant + 1);
+            if (joueurCourant >= joueurs.size()) joueurSuivant = 0;
+        } else {
+            joueurSuivant = (joueurCourant - 1);
+            if (joueurCourant < 0) joueurCourant = joueurSuivant = joueurs.size() - 1;
+        }
+
+        return joueurs.get(joueurSuivant);
     }
 }
