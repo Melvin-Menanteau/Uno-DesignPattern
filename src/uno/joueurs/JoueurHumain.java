@@ -22,6 +22,15 @@ public class JoueurHumain extends Joueur{
     }
 
     @Override
+    public void jouerCarte() {
+        // Methode tres basique pour tester le comportement des cartes
+        System.out.println("Joueur " + nom + " joue " + deck.get(0));
+        deck.get(0).jouerCarte();
+        deck.remove(0);
+        if (deck.size() == 0) notifyParties();
+    }
+
+    @Override
     public void rejoindrePartie(JoueurObserver observer) {
         observers.add(observer);
     }
