@@ -25,7 +25,7 @@ public class JoueurRobot extends Joueur{
     // comportement du robot
     @Override
     public void jouerCarte() {
-        System.out.println("Joueur " + nom + " joue " + deck.get(0));
+        System.out.println("Joueur " + nom + " joue " + deck.get(0) + " " + deck.size() + " cartes restantes");
         boolean carteJouee = false;
         // le robot joue la première carte qu'il peut jouer
         for (Carte carte : deck) {

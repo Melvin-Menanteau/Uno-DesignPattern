@@ -76,14 +76,17 @@ public class Partie implements JoueurObserver {
 
     public Joueur getJoueurSuivant() {
         Integer joueurSuivant;
+        System.out.println("Joueur courant: " + joueurCourant + " Sens rotation: " + sensRotationHoraire);
 
         if (sensRotationHoraire) {
             joueurSuivant = (joueurCourant + 1);
             if (joueurSuivant >= joueurs.size()) joueurSuivant = 0;
         } else {
             joueurSuivant = (joueurCourant - 1);
-            if (joueurSuivant < 0) joueurCourant = joueurs.size() - 1;
+            if (joueurSuivant < 0) joueurSuivant = (joueurs.size() - 1);
         }
+
+        System.out.println("Joueur suivant: " + joueurSuivant);
 
         return joueurs.get(joueurSuivant);
     }
