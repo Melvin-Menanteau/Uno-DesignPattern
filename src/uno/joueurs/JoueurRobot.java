@@ -35,11 +35,6 @@ public class JoueurRobot extends Joueur{
     }
 
     @Override
-    public void jouerCarte() {
-
-    }
-
-    @Override
     public void rejoindrePartie(JoueurObserver observer) {
         observers.add(observer);
     }
