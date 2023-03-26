@@ -57,12 +57,6 @@ public class Carte {
         comportementCarte.jouerCarte();
     }
 
-    public boolean isCarteJouable() {
-        return (partie.getCarteCourante().getCouleur() == this.getCouleur() ||
-                partie.getCarteCourante().getValeur() == this.getValeur() ||
-                partie.getCarteCourante().getCouleur() == Couleur.NOIR);
-    }
-
     @Override
     public String toString() {
         return "Carte [couleur=" + couleur + ", valeur=" + valeur + ", action=" + comportementCarte + "]";
