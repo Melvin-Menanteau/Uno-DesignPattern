@@ -1,5 +1,7 @@
 package uno.cartes;
 
+import uno.cartes.Carte;
+
 import java.util.Collections;
 import java.util.ArrayList;
 

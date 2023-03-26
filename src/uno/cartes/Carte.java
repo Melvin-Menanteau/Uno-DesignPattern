@@ -8,7 +8,7 @@ public class Carte {
     }
 
     enum Action {
-        INVERSION, BLOQUE, PLUS2, PLUS4, COULEUR
+        INVERSION, BLOQUE, PLUS2, PLUS4, COULEUR, NORMAL
     }
 
     private Couleur couleur;

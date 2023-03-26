@@ -1,9 +1,14 @@
 package uno;
 
-import java.util.ArrayList;
-import uno.joueurs.*;
-import uno.cartes.Paquet;
+
 import uno.cartes.Carte;
+import uno.cartes.Paquet;
+import uno.joueurs.Joueur;
+import uno.joueurs.JoueurHumain;
+import uno.joueurs.JoueurObserver;
+import uno.joueurs.JoueurRobot;
+
+import java.util.ArrayList;
 
 public class Partie implements JoueurObserver {
 
@@ -34,10 +39,13 @@ public class Partie implements JoueurObserver {
 
         for (int i = 0; i < nombreJoueurs; i++) {
             if (i == 0)
+
+
                 joueurs.add(new JoueurHumain("Joueur " + (i + 1)));
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
 
+            // main de départ
             for (int j = 0; j < 7; j++) {
                 joueurs.get(i).piocher();
             }
@@ -45,8 +53,9 @@ public class Partie implements JoueurObserver {
 
         joueurs.forEach(joueur -> {
             System.out.println(joueur);
+            joueur.rejoindrePartie(this);
 
-            while (joueur.getNombreCartes() > 0)
+            while (joueur.getNombreCartes() > 0 && !estTerminee)
                 joueur.jouerCarte();
         });
     }
@@ -54,5 +63,12 @@ public class Partie implements JoueurObserver {
     @Override
     public void update() {
         // termine la partie si un joueur a gagné
+        for (Joueur joueur : joueurs) {
+            if (joueur.getNombreCartes() == 0) {
+                estTerminee = true;
+                System.out.println(joueur.getNom() + " a gagné la partie !");
+                break;
+            }
+        }
     }
 }
