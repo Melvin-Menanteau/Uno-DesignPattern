@@ -63,11 +63,15 @@ public class Partie implements JoueurObserver {
 
     @Override
     public void update() {
-        //TODO: Bug, quand une carte bloque est joue, le joueur courant est incremente et c'est donc le mauvais nom qui s'affiche
-        System.out.println("Le joueur " + joueurs.get(joueurCourant).getNom() + " a gagné");
-
         // termine la partie si un joueur a gagné
+
         estTerminee = true;
+        System.out.println("Partie terminée !");
+        for (Joueur joueur : joueurs) {
+            if (joueur.getDeck().size() == 0) {
+                System.out.println("Le joueur " + joueur.getNom() + " a gagné !");
+            }
+        }
     }
 
     public void setCarteCourante(Carte carte) {

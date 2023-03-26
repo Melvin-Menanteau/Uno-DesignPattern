@@ -26,6 +26,10 @@ public abstract class Joueur implements EtatJoueur {
         return nom;
     }
 
+    public ArrayList<Carte> getDeck() {
+    	return deck;
+    }
+
     @Override
     public String toString() {
         return nom + " possede " + deck.size() + " cartes";
