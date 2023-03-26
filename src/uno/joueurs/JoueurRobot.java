@@ -24,9 +24,18 @@ public class JoueurRobot extends Joueur{
 
     @Override
     public void jouerCarte() {
-        System.out.println("Joueur " + nom + " joue " + deck.get(0));
-        deck.get(0).jouerCarte();
-        deck.remove(0);
+        boolean carteJouee = false;
+        for (Carte carte : deck) {
+            if (carte.isCarteJouable()) {
+                carte.jouerCarte();
+                deck.remove(carte);
+                carteJouee = true;
+                break;
+            }
+        }
+        if (!carteJouee) {
+            piocher();
+        }
         if (deck.size() == 0) notifyParties();
     }
 
