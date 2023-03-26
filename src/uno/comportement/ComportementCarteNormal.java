@@ -1,8 +1,10 @@
 package uno.comportement;
 
+import uno.Partie;
+
 public class ComportementCarteNormal implements ComportementCarte {
     @Override
     public void jouerCarte() {
-        System.out.println("Carte Normal");
+        // Aucun effet pour cette carte
     };
 }

@@ -53,6 +53,7 @@ public class Carte {
     }
 
     public void jouerCarte() {
+        partie.setCarteCourante(this);
         comportementCarte.jouerCarte();
     }
 
