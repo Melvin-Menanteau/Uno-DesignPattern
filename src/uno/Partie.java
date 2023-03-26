@@ -97,4 +97,8 @@ public class Partie implements JoueurObserver {
             if (joueurCourant < 0) joueurCourant = joueurs.size() - 1;
         }
     }
+
+    public Carte getCarteCourante() {
+        return plateau.getCarteCourante();
+    }
 }
