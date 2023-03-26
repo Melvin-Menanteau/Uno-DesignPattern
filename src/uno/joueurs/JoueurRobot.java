@@ -43,7 +43,6 @@ public class JoueurRobot extends Joueur{
         return nom;
     }
 
-
     @Override
     public void rejoindrePartie(JoueurObserver observer) {
         observers.add(observer);

@@ -15,13 +15,7 @@ public abstract class Joueur implements EtatJoueur {
         deck.add(Partie.getCarte());
     }
 
-    public void jouerCarte() {
-        // Methode tres basique pour tester le comportement des cartes
-        System.out.println("Joueur " + nom + " joue " + deck.get(0));
-        deck.get(0).jouerCarte();
-        deck.remove(0);
-        if (deck.size() == 0) notifyParties();
-    }
+    public abstract void jouerCarte();
 
     //TODO: A supprimer, permet de tester le fonctionnement des cartes
     public Integer getNombreCartes() {
