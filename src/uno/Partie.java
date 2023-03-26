@@ -39,12 +39,14 @@ public class Partie implements JoueurObserver {
 
         joueurs = new ArrayList<Joueur>();
 
+        // création des joueurs
         for (int i = 0; i < nombreJoueurs; i++) {
             if (i == 0)
                 joueurs.add(new JoueurHumain("Joueur " + (i + 1)));
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
 
+            // subscribe les joueurs à la partie
             joueurs.get(i).rejoindrePartie(this);
 
             // main de départ
@@ -63,6 +65,7 @@ public class Partie implements JoueurObserver {
     public void update() {
         //TODO: Bug, quand une carte bloque est joue, le joueur courant est incremente et c'est donc le mauvais nom qui s'affiche
         System.out.println("Le joueur " + joueurs.get(joueurCourant).getNom() + " a gagné");
+
         // termine la partie si un joueur a gagné
         estTerminee = true;
     }
@@ -76,10 +79,10 @@ public class Partie implements JoueurObserver {
 
         if (sensRotationHoraire) {
             joueurSuivant = (joueurCourant + 1);
-            if (joueurSuivant >= joueurs.size()) joueurSuivant = 0;
+            if (joueurCourant >= joueurs.size()) joueurSuivant = 0;
         } else {
             joueurSuivant = (joueurCourant - 1);
-            if (joueurSuivant < 0) joueurSuivant = (joueurs.size() - 1);
+            if (joueurCourant < 0) joueurCourant = joueurSuivant = joueurs.size() - 1;
         }
 
         return joueurs.get(joueurSuivant);
