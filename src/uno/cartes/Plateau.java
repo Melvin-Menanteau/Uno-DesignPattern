@@ -7,6 +7,8 @@ import uno.Partie;
 public class Plateau {
     private CarteBuilder carteBuilder;
     private ArrayList<Carte> cartesDisponible = new ArrayList<>();
+    private Carte carteCourante;
+    private ArrayList<Carte> cartesJouees = new ArrayList<>();
 
     public Plateau(Partie partie) {
         carteBuilder = new CarteBuilder(partie);
@@ -45,12 +47,19 @@ public class Plateau {
         Collections.shuffle(cartesDisponible);
     }
 
-    public Carte getCarte() {
-        //TODO: Gerer le cas ou il n'y a plus de carte a piocher (creer une liste avec toutes les cartes deja jouees, puis les melangees et les reutilisees?)
-        if (cartesDisponible.size() > 0)
-            return cartesDisponible.remove(0);
+    public void setCarteCourante(Carte carte) {
+        cartesJouees.add(carteCourante);
+        carteCourante = carte;
+    }
 
-        return null;
+    public Carte getCarte() {
+        if (cartesDisponible.size() == 0) {
+            cartesDisponible.addAll(cartesJouees);
+            cartesJouees.clear();
+            Collections.shuffle(cartesDisponible);
+        }
+
+        return cartesDisponible.remove(0);
     }
 
     public ArrayList<Carte> getCartes() {
