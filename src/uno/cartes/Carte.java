@@ -1,6 +1,7 @@
 package uno.cartes;
 
 import uno.comportement.ComportementCarte;
+import uno.Partie;
 
 public class Carte {
     enum Couleur {
@@ -11,11 +12,13 @@ public class Carte {
         INVERSION, BLOQUE, PLUS2, PLUS4, COULEUR, NORMAL
     }
 
+    private Partie partie;
     private Couleur couleur;
     private Integer valeur;
     private ComportementCarte comportementCarte;
 
-    public Carte(Couleur couleur, Integer valeur, ComportementCarte comportementCarte) {
+    public Carte(Partie partie, Couleur couleur, Integer valeur, ComportementCarte comportementCarte) {
+        this.partie = partie;
         this.couleur = couleur;
         this.valeur = valeur;
         this.comportementCarte = comportementCarte;

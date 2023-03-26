@@ -1,18 +1,21 @@
 package uno.cartes;
 
 import uno.comportement.*;
+import uno.Partie;
 
 public class CarteBuilder implements CarteBuilderInterface {
+    private Partie partie;
     private Carte.Couleur couleur;
     private Integer valeur;
     private ComportementCarte comportementCarte;
 
-    public CarteBuilder() {
+    public CarteBuilder(Partie partie) {
+        this.partie = partie;
         this.reset();
     }
 
     public Carte build() {
-        return new Carte(this.couleur, this.valeur, this.comportementCarte);
+        return new Carte(this.partie, this.couleur, this.valeur, this.comportementCarte);
     }
 
     public void reset() {

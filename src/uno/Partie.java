@@ -2,7 +2,7 @@ package uno;
 
 
 import uno.cartes.Carte;
-import uno.cartes.Paquet;
+import uno.cartes.Plateau;
 import uno.joueurs.Joueur;
 import uno.joueurs.JoueurHumain;
 import uno.joueurs.JoueurObserver;
@@ -14,10 +14,11 @@ public class Partie implements JoueurObserver {
 
     private ArrayList<Joueur> joueurs;
     private boolean estTerminee;
-    static private Paquet paquet;
+    private Integer joueurCourant = 0;
+    static private Plateau plateau;
 
     static public Carte getCarte() {
-        return paquet.getCarte();
+        return plateau.getCarte();
     }
 
     public  Partie(Integer nombreJoueurs) {
@@ -27,7 +28,7 @@ public class Partie implements JoueurObserver {
             throw new IllegalArgumentException("Il faut au moins 2 joueurs");
         }
 
-        paquet = new Paquet();
+        plateau = new Plateau(this);
 
         /*
         paquet.getCartes().forEach(carte -> {
