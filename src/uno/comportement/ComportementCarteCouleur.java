@@ -1,8 +1,17 @@
 package uno.comportement;
 
+import uno.Partie;
+
 public class ComportementCarteCouleur implements ComportementCarte {
+
+    private Partie partie;
+
+    public ComportementCarteCouleur(Partie partie) {
+        this.partie = partie;
+    }
     @Override
     public void jouerCarte() {
-        System.out.println("Carte Couleur");
+        // set the color of the next card
+
     };
 }

@@ -41,8 +41,6 @@ public class Partie implements JoueurObserver {
 
         for (int i = 0; i < nombreJoueurs; i++) {
             if (i == 0)
-
-
                 joueurs.add(new JoueurHumain("Joueur " + (i + 1)));
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
@@ -55,7 +53,7 @@ public class Partie implements JoueurObserver {
 
         while (!estTerminee) {
             joueurs.get(joueurCourant).jouerCarte();
-            incrementerJoueurCourant();
+            setJoueurSuivant();
         }
     }
 
@@ -87,7 +85,7 @@ public class Partie implements JoueurObserver {
         sensRotationHoraire = !sensRotationHoraire;
     }
 
-    public void incrementerJoueurCourant() {
+    public void setJoueurSuivant() {
         if (sensRotationHoraire) {
             joueurCourant++;
             if (joueurCourant >= joueurs.size()) joueurCourant = 0;

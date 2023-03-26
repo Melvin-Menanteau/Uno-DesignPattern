@@ -37,18 +37,19 @@ public class CarteBuilder implements CarteBuilderInterface {
     public CarteBuilder setComportement(Carte.Action action) {
         switch (action) {
             case INVERSION:
-                this.comportementCarte = new ComportementCarteInversion();
+                this.comportementCarte = new ComportementCarteInversion(partie);
                 break;
             case COULEUR:
-                this.comportementCarte = new ComportementCarteCouleur();
+                this.comportementCarte = new ComportementCarteCouleur(partie);
                 break;
             case BLOQUE:
-                this.comportementCarte = new ComportementCarteBloque();
+                this.comportementCarte = new ComportementCarteBloque(partie);
                 break;
             case PLUS2:
+                this.comportementCarte = new ComportementCartePlus(2,partie);
+                break;
             case PLUS4:
-                //TODO: Nombre de carte a piocher en parametre?
-                this.comportementCarte = new ComportementCartePlus();
+                this.comportementCarte = new ComportementCartePlus(4,partie);
                 break;
             default:
                 this.comportementCarte = null;
