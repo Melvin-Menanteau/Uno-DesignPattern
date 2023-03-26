@@ -53,13 +53,10 @@ public class Partie implements JoueurObserver {
             }
         }
 
-        joueurs.forEach(joueur -> {
-            System.out.println(joueur);
-            joueur.rejoindrePartie(this);
-
-            while (joueur.getNombreCartes() > 0 && !estTerminee)
-                joueur.jouerCarte();
-        });
+        while (!estTerminee) {
+            joueurs.get(joueurCourant).jouerCarte();
+            incrementerJoueurCourant();
+        }
     }
 
     @Override
@@ -88,5 +85,16 @@ public class Partie implements JoueurObserver {
 
     public void inverserSensRotation() {
         sensRotationHoraire = !sensRotationHoraire;
+    }
+
+    public void incrementerJoueurCourant() {
+        if (sensRotationHoraire) {
+            joueurCourant++;
+            if (joueurCourant >= joueurs.size()) joueurCourant = 0;
+        }
+        else {
+            joueurCourant--;
+            if (joueurCourant < 0) joueurCourant = joueurs.size() - 1;
+        }
     }
 }
