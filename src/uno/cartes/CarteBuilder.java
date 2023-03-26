@@ -52,7 +52,7 @@ public class CarteBuilder implements CarteBuilderInterface {
                 this.comportementCarte = new ComportementCartePlus(4,partie);
                 break;
             default:
-                this.comportementCarte = null;
+                this.comportementCarte = new ComportementCarteNormal();
                 break;
         }
         return this;
