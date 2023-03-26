@@ -57,6 +57,8 @@ public class Plateau {
     }
 
     public Carte getCarte() {
+        System.out.println("Pioche: " + pioche.size() + " Cartes jouées: " + cartesJouees.size());
+
         if (pioche.size() == 0) {
             pioche.addAll(cartesJouees);
             cartesJouees.clear();

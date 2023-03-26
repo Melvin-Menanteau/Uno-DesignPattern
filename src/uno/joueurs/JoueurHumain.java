@@ -28,6 +28,7 @@ public class JoueurHumain extends Joueur{
         System.out.println("Joueur " + nom + " joue " + deck.get(0));
         deck.get(0).jouerCarte();
         deck.remove(0);
+
         if (deck.size() == 0) notifyParties();
     }
 

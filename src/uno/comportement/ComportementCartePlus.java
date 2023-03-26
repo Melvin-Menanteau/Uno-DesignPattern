@@ -16,8 +16,10 @@ public class ComportementCartePlus implements ComportementCarte {
     @Override
     public void jouerCarte() {
         System.out.println("Carte Plus");
+        Joueur joueur = partie.getJoueurSuivant();
+
         for (int i = 0; i < nbCartePlus; i++) {
-            partie.getJoueurSuivant().piocher();
+            joueur.piocher();
         }
     }
 }

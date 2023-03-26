@@ -45,6 +45,8 @@ public class Partie implements JoueurObserver {
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
 
+            joueurs.get(i).rejoindrePartie(this);
+
             // main de départ
             for (int j = 0; j < 7; j++) {
                 joueurs.get(i).piocher();
@@ -59,6 +61,7 @@ public class Partie implements JoueurObserver {
 
     @Override
     public void update() {
+        System.out.println("Le joueur " + joueurs.get(joueurCourant).getNom() + " a gagné");
         // termine la partie si un joueur a gagné
         estTerminee = true;
     }
@@ -72,10 +75,10 @@ public class Partie implements JoueurObserver {
 
         if (sensRotationHoraire) {
             joueurSuivant = (joueurCourant + 1);
-            if (joueurCourant >= joueurs.size()) joueurSuivant = 0;
+            if (joueurSuivant >= joueurs.size()) joueurSuivant = 0;
         } else {
             joueurSuivant = (joueurCourant - 1);
-            if (joueurCourant < 0) joueurCourant = joueurSuivant = joueurs.size() - 1;
+            if (joueurSuivant < 0) joueurSuivant = (joueurs.size() - 1);
         }
 
         return joueurs.get(joueurSuivant);
