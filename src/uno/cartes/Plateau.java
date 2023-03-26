@@ -6,7 +6,7 @@ import uno.Partie;
 
 public class Plateau {
     private CarteBuilder carteBuilder;
-    private ArrayList<Carte> cartesDisponible = new ArrayList<>();
+    private ArrayList<Carte> pioche = new ArrayList<>();
     private Carte carteCourante;
     private ArrayList<Carte> cartesJouees = new ArrayList<>();
 
@@ -19,7 +19,7 @@ public class Plateau {
                     carteBuilder.reset();
                     carteBuilder.setCouleur(couleur);
                     carteBuilder.setValeur(i);
-                    cartesDisponible.add(carteBuilder.build());
+                    pioche.add(carteBuilder.build());
                 }
 
                 for (Carte.Action action : Carte.Action.values()) {
@@ -29,7 +29,7 @@ public class Plateau {
                     carteBuilder.reset();
                     carteBuilder.setCouleur(couleur);
                     carteBuilder.setComportement(action);
-                    cartesDisponible.add(carteBuilder.build());
+                    pioche.add(carteBuilder.build());
                 }
             }
         }
@@ -37,14 +37,14 @@ public class Plateau {
         for (int i = 0; i < 4; i++) {
             carteBuilder.reset();
             carteBuilder.setComportement(Carte.Action.PLUS4);
-            cartesDisponible.add(carteBuilder.build());
+            pioche.add(carteBuilder.build());
 
             carteBuilder.reset();
             carteBuilder.setComportement(Carte.Action.COULEUR);
-            cartesDisponible.add(carteBuilder.build());
+            pioche.add(carteBuilder.build());
         }
 
-        Collections.shuffle(cartesDisponible);
+        Collections.shuffle(pioche);
     }
 
     public void setCarteCourante(Carte carte) {
@@ -52,17 +52,21 @@ public class Plateau {
         carteCourante = carte;
     }
 
+    public Carte getCarteCourante() {
+        return carteCourante;
+    }
+
     public Carte getCarte() {
-        if (cartesDisponible.size() == 0) {
-            cartesDisponible.addAll(cartesJouees);
+        if (pioche.size() == 0) {
+            pioche.addAll(cartesJouees);
             cartesJouees.clear();
-            Collections.shuffle(cartesDisponible);
+            Collections.shuffle(pioche);
         }
 
-        return cartesDisponible.remove(0);
+        return pioche.remove(0);
     }
 
     public ArrayList<Carte> getCartes() {
-        return cartesDisponible;
+        return pioche;
     }
 }
