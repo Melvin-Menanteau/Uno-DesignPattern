@@ -1,11 +1,13 @@
 package uno.joueurs;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import uno.Partie;
 import uno.cartes.Carte;
 
 public abstract class Joueur implements EtatJoueur {
+    private List<JoueurObserver> observers;
     protected String nom;
     protected ArrayList<Carte> deck;
 
@@ -33,5 +35,13 @@ public abstract class Joueur implements EtatJoueur {
     @Override
     public String toString() {
         return nom + " possede " + deck.size() + " cartes";
+    }
+
+    public List<JoueurObserver> getObservers() {
+        return observers;
+    }
+
+    public boolean equals(Joueur joueur) {
+    	return this.nom.equals(joueur.getNom());
     }
 }

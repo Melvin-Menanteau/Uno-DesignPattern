@@ -19,6 +19,7 @@ public class JoueurHumain extends Joueur{
 
     @Override
     public void piocher() {
+        System.out.println("Joueur " + nom + " pioche");
         deck.add(Partie.getCarte());
     }
 
@@ -37,6 +38,11 @@ public class JoueurHumain extends Joueur{
         return nom;
     }
 
+    //for test
+    public List<JoueurObserver> getObservers() {
+        return observers;
+    }
+
     @Override
     public void rejoindrePartie(JoueurObserver observer) {
         observers.add(observer);
@@ -51,4 +57,6 @@ public class JoueurHumain extends Joueur{
     public void notifyParties() {
         observers.forEach(observer -> observer.update());
     }
+
+
 }

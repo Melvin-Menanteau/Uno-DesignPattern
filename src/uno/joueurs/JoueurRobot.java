@@ -19,6 +19,7 @@ public class JoueurRobot extends Joueur{
 
     @Override
     public void piocher() {
+        System.out.println("Joueur " + nom + " pioche");
         deck.add(Partie.getCarte());
     }
 
@@ -46,6 +47,11 @@ public class JoueurRobot extends Joueur{
 
     public String getNom() {
         return nom;
+    }
+
+    //for test
+    public List<JoueurObserver> getObservers() {
+        return observers;
     }
 
     @Override

@@ -57,8 +57,6 @@ public class Plateau {
     }
 
     public Carte getCarte() {
-        System.out.println("Pioche: " + pioche.size() + " Cartes jouées: " + cartesJouees.size());
-
         if (pioche.size() == 0) {
             pioche.addAll(cartesJouees);
             cartesJouees.clear();
@@ -69,6 +67,16 @@ public class Plateau {
     }
 
     public ArrayList<Carte> getCartes() {
+        return pioche;
+    }
+
+    // use for testing
+    public ArrayList<Carte> getCartesJouees() {
+        return cartesJouees;
+    }
+
+    // use for testing
+    public ArrayList<Carte> getPioche() {
         return pioche;
     }
 }

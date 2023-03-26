@@ -31,12 +31,6 @@ public class Partie implements JoueurObserver {
 
         plateau = new Plateau(this);
 
-        /*
-        paquet.getCartes().forEach(carte -> {
-            System.out.println(carte);
-        });
-        */
-
         joueurs = new ArrayList<Joueur>();
 
         // création des joueurs
@@ -54,7 +48,9 @@ public class Partie implements JoueurObserver {
                 joueurs.get(i).piocher();
             }
         }
+    }
 
+    public void run() {
         while (!estTerminee) {
             joueurs.get(joueurCourant).jouerCarte();
             setJoueurSuivant();
@@ -80,8 +76,6 @@ public class Partie implements JoueurObserver {
 
     public Joueur getJoueurSuivant() {
         Integer joueurSuivant;
-        System.out.println("Joueur courant: " + joueurCourant + " Sens rotation: " + sensRotationHoraire);
-
         if (sensRotationHoraire) {
             joueurSuivant = (joueurCourant + 1);
             if (joueurSuivant >= joueurs.size()) joueurSuivant = 0;
@@ -89,9 +83,6 @@ public class Partie implements JoueurObserver {
             joueurSuivant = (joueurCourant - 1);
             if (joueurSuivant < 0) joueurSuivant = (joueurs.size() - 1);
         }
-
-        System.out.println("Joueur suivant: " + joueurSuivant);
-
         return joueurs.get(joueurSuivant);
     }
 
@@ -112,5 +103,25 @@ public class Partie implements JoueurObserver {
 
     public Carte getCarteCourante() {
         return plateau.getCarteCourante();
+    }
+
+    // use for testing purposes
+    public ArrayList<Joueur> getJoueurs() {
+        return joueurs;
+    }
+
+    // use for testing purposes
+    public Joueur getJoueurCourant() {
+        return joueurs.get(joueurCourant);
+    }
+
+    // use for testing purposes
+    public Plateau getPlateau() {
+        return plateau;
+    }
+
+    // use for testing purposes
+    public boolean isEstTerminee() {
+        return estTerminee;
     }
 }

@@ -4,11 +4,11 @@ import uno.comportement.ComportementCarte;
 import uno.Partie;
 
 public class Carte {
-    enum Couleur {
+    public enum Couleur {
         ROUGE, BLEU, VERT, JAUNE, NOIR
     }
 
-    enum Action {
+    public enum Action {
         INVERSION, BLOQUE, PLUS2, PLUS4, COULEUR, NORMAL
     }
 
