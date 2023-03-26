@@ -85,4 +85,8 @@ public class Partie implements JoueurObserver {
 
         return joueurs.get(joueurSuivant);
     }
+
+    public void inverserSensRotation() {
+        sensRotationHoraire = !sensRotationHoraire;
+    }
 }
