@@ -79,10 +79,10 @@ public class Partie implements JoueurObserver {
 
         if (sensRotationHoraire) {
             joueurSuivant = (joueurCourant + 1);
-            if (joueurCourant >= joueurs.size()) joueurSuivant = 0;
+            if (joueurSuivant >= joueurs.size()) joueurSuivant = 0;
         } else {
             joueurSuivant = (joueurCourant - 1);
-            if (joueurCourant < 0) joueurCourant = joueurSuivant = joueurs.size() - 1;
+            if (joueurSuivant < 0) joueurCourant = joueurs.size() - 1;
         }
 
         return joueurs.get(joueurSuivant);
