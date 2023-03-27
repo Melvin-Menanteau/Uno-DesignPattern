@@ -1,7 +1,5 @@
 package uno;
 
-import uno.ui.MainWindow;
-
 import java.util.Scanner;
 
 public class Main {

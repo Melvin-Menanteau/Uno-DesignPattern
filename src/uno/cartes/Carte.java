@@ -1,10 +1,31 @@
 package uno.cartes;
 
-import uno.comportement.ComportementCarte;
+import uno.comportement.*;
 import uno.Partie;
-import uno.comportement.ComportementCarteCouleur;
 
 public class Carte {
+    // pour colorer les cartes dans la console
+    public enum AsciiColours {
+        ROUGE("\u001B[31m"),
+        VERT("\u001B[32m"),
+        JAUNE("\u001B[33m"),
+        BLEU("\u001B[34m"),
+
+        RESET("\u001B[0m"); // le code pour réinitialiser la couleur
+
+        private final String code;
+
+        AsciiColours(String code) {
+            this.code = code;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+
+    }
+
     public enum Couleur {
         // liste des couleurs possibles pour une carte
         ROUGE, BLEU, VERT, JAUNE, NOIR
@@ -68,6 +89,73 @@ public class Carte {
         return "Carte [valeur=" + valeur + ", couleur=" + couleur + ", action=" + comportementCarte.toString() + "]";
     }
 
+    public void drawCarte() {
+        String[] dessin = null;
+        if (comportementCarte instanceof ComportementCarteNormal) {
+            dessin = new String[]{
+                    "+-------+",
+                    "| " + valeur + "     |",
+                    "|       |",
+                    "|       |",
+                    "|       |",
+                    "|     " + valeur + " |",
+                    "+-------+"
+            };
+        } else  if (comportementCarte instanceof ComportementCarteCouleur) {
+            dessin = new String[]{
+                    "+-------+",
+                    "|       |",
+                    "| COLOR |",
+                    "|       |",
+                    "| CARD  |",
+                    "|       |",
+                    "+-------+"
+            };
+        } else if (comportementCarte instanceof ComportementCarteBloque) {
+            dessin = new String[]{
+                    "+-------+",
+                    "|       |",
+                    "| BLOCK |",
+                    "|       |",
+                    "| CARD  |",
+                    "|       |",
+                    "+-------+"
+            };
+        } else if (comportementCarte instanceof ComportementCarteInversion) {
+            dessin = new String[]{
+                    "+-------+",
+                    "|       |",
+                    "| SWITCH|",
+                    "|       |",
+                    "| CARD  |",
+                    "|       |",
+                    "+-------+"
+            };
+
+        } else if (comportementCarte instanceof ComportementCartePlus) {
+            String nbPlus = Integer.toString( ((ComportementCartePlus) comportementCarte).getNbCartePlus() );
+            dessin = new String[]{
+                    "+-------+",
+                    "|       |",
+                    "| PLUS  |",
+                    "|  " + nbPlus + "    |",
+                    "| CARD  |",
+                    "|       |",
+                    "+-------+"
+            };
+        }
+
+        // couleur de la carte
+        String colorCode = couleur == Couleur.ROUGE ? AsciiColours.ROUGE.getCode() :
+                couleur == Couleur.BLEU ? AsciiColours.BLEU.getCode() :
+                        couleur == Couleur.VERT ? AsciiColours.VERT.getCode() :
+                                couleur == Couleur.JAUNE ? AsciiColours.JAUNE.getCode() :
+                                        couleur == Couleur.NOIR ? AsciiColours.RESET.getCode() : AsciiColours.RESET.getCode();
+        for (String ligne : dessin) {
+            System.out.println(colorCode + ligne + AsciiColours.RESET.getCode());
+        }
+    }
+
     public boolean isCarteJouable() {
         // vérifie si la carte est jouable
         // première carte de la partie
@@ -76,7 +164,6 @@ public class Carte {
         }
         // cas particulier de la carte couleur
         if (partie.getCarteCourante().comportementCarte instanceof ComportementCarteCouleur){
-            System.out.println("test couleur");
             return this.getCouleurString(this.getCouleur()) == partie.getCouleurCourante();
         }
         // autres cas

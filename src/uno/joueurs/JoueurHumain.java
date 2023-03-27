@@ -33,23 +33,32 @@ public class JoueurHumain extends Joueur{
         Integer indexCarte = null;
 
         do {
-            System.out.println("Choisir une carte à jouée: ");
+            System.out.println("Choisir une carte jouable : ");
             indexCarte = (scanner.nextInt() - 1);
         } while(!deck.get(indexCarte).isCarteJouable());
 
-        System.out.println("Joueur " + nom + " joue " + deck.get(indexCarte) + " " + deck.size() + " cartes restantes");
+        // afficher la carte jouée
+        System.out.println("Joueur " + nom + " joue : " );
+        deck.get(indexCarte).drawCarte();
 
+        // jouer la carte
         deck.get(indexCarte).jouerCarte();
-        deck.remove(indexCarte);
+        deck.remove(deck.get(indexCarte));
+
+
+        System.out.println(deck.size() + " cartes restantes");
+
 
         if (deck.size() == 0) notifyParties();
     }
 
     private void afficherCartes() {
-        System.out.println("Liste des cartes disponibles");
-
+        System.out.println("Liste des cartes disponibles : ");
+          int i = 1;
         for (Carte carte : deck) {
-            System.out.println(carte);
+            System.out.println(i + " : " );
+            carte.drawCarte();
+            i++;
         }
     }
 
