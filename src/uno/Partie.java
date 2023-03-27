@@ -1,6 +1,5 @@
 package uno;
 
-
 import uno.cartes.Carte;
 import uno.cartes.Plateau;
 import uno.joueurs.Joueur;
@@ -8,6 +7,7 @@ import uno.joueurs.JoueurHumain;
 import uno.joueurs.JoueurObserver;
 import uno.joueurs.JoueurRobot;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Partie implements JoueurObserver {
@@ -34,7 +34,7 @@ public class Partie implements JoueurObserver {
 
         plateau = new Plateau(this);
 
-        joueurs = new ArrayList<Joueur>();
+        joueurs = new ArrayList<>();
 
         // création des joueurs
         for (int i = 0; i < nombreJoueurs; i++) {
@@ -68,7 +68,7 @@ public class Partie implements JoueurObserver {
         estTerminee = true;
         System.out.println("Partie terminée !");
         for (Joueur joueur : joueurs) {
-            if (joueur.getDeck().size() == 0) {
+            if (joueur.getDeck().isEmpty()) {
                 System.out.println("Le joueur " + joueur.getNom() + " a gagné !");
             }
         }
@@ -115,7 +115,7 @@ public class Partie implements JoueurObserver {
     }
 
     // utilisé pour les tests
-    public ArrayList<Joueur> getJoueurs() {
+    public List<Joueur> getJoueurs() {
         return joueurs;
     }
 
