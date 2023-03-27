@@ -2,10 +2,13 @@ package uno.joueurs;
 
 import uno.Partie;
 import uno.cartes.Carte;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class JoueurHumain extends Joueur{
+    private static Scanner scanner = new Scanner(System.in);
 
     // liste des parties auxquelles le joueur est inscrit
     private List<JoueurObserver> observers = new ArrayList<>();
@@ -25,13 +28,29 @@ public class JoueurHumain extends Joueur{
 
     @Override
     public void jouerCarte() {
-        // Methode tres basique pour tester le comportement des cartes
-        System.out.println("Joueur " + nom + " joue " + deck.get(0) + " " + deck.size() + " cartes restantes");
+        afficherCartes();
 
-        deck.get(0).jouerCarte();
-        deck.remove(0);
+        Integer indexCarte = null;
+
+        do {
+            System.out.println("Choisir une carte à jouée: ");
+            indexCarte = (scanner.nextInt() - 1);
+        } while(!deck.get(indexCarte).isCarteJouable());
+
+        System.out.println("Joueur " + nom + " joue " + deck.get(indexCarte) + " " + deck.size() + " cartes restantes");
+
+        deck.get(indexCarte).jouerCarte();
+        deck.remove(indexCarte);
 
         if (deck.size() == 0) notifyParties();
+    }
+
+    private void afficherCartes() {
+        System.out.println("Liste des cartes disponibles");
+
+        for (Carte carte : deck) {
+            System.out.println(carte);
+        }
     }
 
     public String getNom() {
