@@ -2,6 +2,7 @@ package uno;
 
 import uno.cartes.Carte;
 import uno.cartes.Plateau;
+import uno.comportement.ComportementCarteNormal;
 import uno.joueurs.Joueur;
 import uno.joueurs.JoueurHumain;
 import uno.joueurs.JoueurObserver;
@@ -51,6 +52,15 @@ public class Partie implements JoueurObserver {
                 joueurs.get(i).piocher();
             }
         }
+
+        // carte de départ du plateau de jeu, doit être une carte normale
+        plateau.setCarteCourante(getCarte());
+        while (plateau.getCarteCourante().getComportement() instanceof ComportementCarteNormal) {
+            plateau.setCarteCourante(getCarte());
+        }
+        plateau.setCarteCourante(getCarte());
+        System.out.println("Carte de départ : " );
+        plateau.getCarteCourante().drawCarte();
     }
 
     // lance la partie

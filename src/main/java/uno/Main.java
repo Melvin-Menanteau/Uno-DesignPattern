@@ -14,10 +14,13 @@ public class Main {
         System.out.println("Entrer votre nom :");
 
         String nom = scanner.next();
-        scanner.close();
+
 
         // Creer la partie et la lance
         Partie partie = new Partie(nbJoueurs,nom);
         partie.run();
+
+        // fermer le scanner
+        scanner.close();
     }
 }

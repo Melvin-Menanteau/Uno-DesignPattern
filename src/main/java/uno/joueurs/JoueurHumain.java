@@ -32,9 +32,20 @@ public class JoueurHumain extends Joueur{
 
         Integer indexCarte = null;
 
+        if (isPioche()) {
+            System.out.println("Aucune carte jouable, vous devez piocher une carte !");
+            piocher();
+            return;
+        }
+
         do {
             System.out.println("Choisir une carte jouable : ");
-            indexCarte = (scanner.nextInt() - 1);
+            if (scanner.hasNextInt()) {
+                indexCarte = scanner.nextInt() - 1;
+            } else {
+                System.out.println("Veuillez entrer un nombre entier valide.");
+                scanner.next(); // Consomme l'entrée invalide pour éviter une boucle infinie
+            }
         } while(!deck.get(indexCarte).isCarteJouable());
 
         // afficher la carte jouée
@@ -60,6 +71,19 @@ public class JoueurHumain extends Joueur{
             carte.drawCarte();
             i++;
         }
+    }
+
+    public boolean isPioche() {
+        boolean pioche = true;
+
+        for (Carte carte : deck) {
+            if (carte.isCarteJouable()) {
+                pioche = false;
+                break;
+            }
+        }
+
+        return pioche;
     }
 
     public String getNom() {
