@@ -10,6 +10,7 @@ public class ComportementCarteInversion implements ComportementCarte {
     }
     @Override
     public void jouerCarte() {
+        // inverse le sens de rotation des joueurs
         System.out.println("Carte Inversion");
         partie.inverserSensRotation();
     };

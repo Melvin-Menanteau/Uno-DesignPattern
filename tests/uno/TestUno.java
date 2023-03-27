@@ -11,26 +11,26 @@ public class TestUno {
 
     @Test
     public void testCreationPartieWithManyPlayers() {
-        // Test that a Partie object is created with the correct number of players
+        // Test qu'une partie est bien creer avec le bon nombres de joueurs
         Partie partie = new Partie(4);
         assertEquals(4, partie.getJoueurs().size());
     }
 
     @Test
     public void testCreationPartieWithNoPlayer() {
-        // creer une partie avec 0 joueur
+        // creer une partie avec 0 joueur -> levée d'exception
         assertThrows(IllegalArgumentException.class, () -> new Partie(0));
     }
 
     @Test
     public void testCreationPartieWithOnePlayer() {
-        // creer une partie avec 1 joueur
+        // creer une partie avec 1 joueur -> levée d'exception
         assertThrows(IllegalArgumentException.class, () -> new Partie(1));
     }
 
     @Test
     public void testSetCarteCourante() {
-        // Test that setCarteCourante method sets the correct carteCourante
+        // Test la méthode setCarteCourante et la création de carte avec le builder
         Partie partie = new Partie(2);
         CarteBuilder carteBuilder = new CarteBuilder(partie);
         Carte carte = carteBuilder.setCouleur(Carte.Couleur.ROUGE).setValeur(5).build();
@@ -40,7 +40,7 @@ public class TestUno {
 
     @Test
     public void testGetCarteCourante() {
-        // Test that getCarteCourante method returns the correct carteCourante
+        // Test la méthode getCarteCourante
         Partie partie = new Partie(2);
         CarteBuilder carteBuilder = new CarteBuilder(partie);
         Carte carte = carteBuilder.setCouleur(Carte.Couleur.ROUGE).setValeur(5).build();
@@ -50,7 +50,7 @@ public class TestUno {
 
     @Test
     public void testGetJoueurSuivant() {
-        // Test that getJoueurSuivant method returns the correct player based on the rotation direction
+        // Test la méthode getJoueurSuivant verifie que le joueur suivant est bon même quand on inverse le sens de rotation
         Partie partie = new Partie(3);
         Joueur joueur1 = partie.getJoueurCourant();
         Joueur joueur2 = partie.getJoueurSuivant();
@@ -65,7 +65,7 @@ public class TestUno {
 
     @Test
     public void testNombresDeCartesEnJeux() {
-        // Test that the number of cards in play is correct
+        // Test que le nombre de cartes en jeu est bien 108
         Partie partie = new Partie(2);
         // aucune cartes n'a ete jouee
         assertEquals(0, partie.getPlateau().getCartesJouees().size());
@@ -75,7 +75,7 @@ public class TestUno {
 
     @Test
     public void testConditionDeVictoire() {
-        // Test that the win condition is met when a player has no cards left
+        // Test la condition de victoire quand le joueur n'a plus de cartes
         Partie partie = new Partie(2);
         Joueur joueur = partie.getJoueurCourant();
         // le joueur courant a 7 cartes -> main de depart
@@ -92,7 +92,7 @@ public class TestUno {
 
     @Test
     public void testConditionDeVictoireFause() {
-        // Test that the win condition is met when a player has no cards left
+        // Test la condition de victoire quand le joueur a encore des cartes -> la partie ne se termine pas
         Partie partie = new Partie(2);
         Joueur joueur = partie.getJoueurCourant();
         // le joueur courant a 7 cartes -> main de depart
@@ -103,7 +103,7 @@ public class TestUno {
         }
         // le joueur courant a 2 cartes
         assertEquals(2, joueur.getDeck().size());
-        // le joueur courant a gagne
+        // le joueur courant n'a pas gagne -> partie toujours en cours
         assertFalse(partie.isEstTerminee());
     }
 
