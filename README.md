@@ -5,6 +5,14 @@ SDK 17
 
 ## Design Patterns utilisés
 
+L'objectif de ce TP est de créer un jeu vidéo en ayant implémenté au moins trois design patterns différents.
+L'interface n'étant pas l'objectif principal, l'interaction ce fait via CLI.
+
+Pour jouer, il est nécessaire de renseigner un nombre de joueurs.
+<br> Il n'y aura qu'un seul joueur humain, les autres joueurs seront des robots, jouant la première carte possible dans leur main.
+
+Un joueur gagne lorsqu'il n'a plus de cartes en main.
+
 ### Strategy
 
 Change le comportement de la carte lorsqu'elle est jouée.
