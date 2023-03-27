@@ -18,11 +18,13 @@ public class Partie implements JoueurObserver {
     private boolean sensRotationHoraire = true; // sens de rotation des joueurs
     static private Plateau plateau; // représente le plateau de jeu contenant les cartes
 
+    private String couleurCourante; // couleur de la carte couleur courante
+
     static public Carte getCarte() {
         return plateau.getCarte();
     }
 
-    public Partie(Integer nombreJoueurs) {
+    public Partie(Integer nombreJoueurs, String nomJoueur) {
         // initialise la partie avec le nombre de joueurs donné en paramètre
         System.out.println("Création de la partie");
 
@@ -37,7 +39,7 @@ public class Partie implements JoueurObserver {
         // création des joueurs
         for (int i = 0; i < nombreJoueurs; i++) {
             if (i == 0)
-                joueurs.add(new JoueurHumain("Joueur " + (i + 1)));
+                joueurs.add(new JoueurHumain(nomJoueur ));
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
 
@@ -130,5 +132,17 @@ public class Partie implements JoueurObserver {
     // use for testing purposes
     public boolean isEstTerminee() {
         return estTerminee;
+    }
+
+    public void setCouleurCourante(String couleur) {
+        // couleur peux être "rouge", "bleue", "jaune", "vert"
+        if (!couleur.equals("rouge") && !couleur.equals("bleu") && !couleur.equals("jaune") && !couleur.equals("vert")) {
+            throw new IllegalArgumentException("La couleur doit être rouge, bleu, jaune ou vert");
+        }
+        couleurCourante = couleur;
+    }
+
+    public String getCouleurCourante() {
+        return couleurCourante;
     }
 }

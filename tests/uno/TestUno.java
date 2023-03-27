@@ -12,26 +12,26 @@ public class TestUno {
     @Test
     public void testCreationPartieWithManyPlayers() {
         // Test qu'une partie est bien creer avec le bon nombres de joueurs
-        Partie partie = new Partie(4);
+        Partie partie = new Partie(4,"joueurTest");
         assertEquals(4, partie.getJoueurs().size());
     }
 
     @Test
     public void testCreationPartieWithNoPlayer() {
         // creer une partie avec 0 joueur -> levée d'exception
-        assertThrows(IllegalArgumentException.class, () -> new Partie(0));
+        assertThrows(IllegalArgumentException.class, () -> new Partie(0,"joueurTest" ));
     }
 
     @Test
     public void testCreationPartieWithOnePlayer() {
         // creer une partie avec 1 joueur -> levée d'exception
-        assertThrows(IllegalArgumentException.class, () -> new Partie(1));
+        assertThrows(IllegalArgumentException.class, () -> new Partie(1, "joueurTest"));
     }
 
     @Test
     public void testSetCarteCourante() {
         // Test la méthode setCarteCourante et la création de carte avec le builder
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         CarteBuilder carteBuilder = new CarteBuilder(partie);
         Carte carte = carteBuilder.setCouleur(Carte.Couleur.ROUGE).setValeur(5).build();
         partie.setCarteCourante(carte);
@@ -41,7 +41,7 @@ public class TestUno {
     @Test
     public void testGetCarteCourante() {
         // Test la méthode getCarteCourante
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         CarteBuilder carteBuilder = new CarteBuilder(partie);
         Carte carte = carteBuilder.setCouleur(Carte.Couleur.ROUGE).setValeur(5).build();
         partie.setCarteCourante(carte);
@@ -51,7 +51,7 @@ public class TestUno {
     @Test
     public void testGetJoueurSuivant() {
         // Test la méthode getJoueurSuivant verifie que le joueur suivant est bon même quand on inverse le sens de rotation
-        Partie partie = new Partie(3);
+        Partie partie = new Partie(3,  "joueurTest");
         Joueur joueur1 = partie.getJoueurCourant();
         Joueur joueur2 = partie.getJoueurSuivant();
         // le joueur suivant devient le joueur 3
@@ -66,7 +66,7 @@ public class TestUno {
     @Test
     public void testNombresDeCartesEnJeux() {
         // Test que le nombre de cartes en jeu est bien 108
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         // aucune cartes n'a ete jouee
         assertEquals(0, partie.getPlateau().getCartesJouees().size());
         // la pioche contient toutes les cartes moins les mains des joueurs et la carte courante
@@ -76,7 +76,7 @@ public class TestUno {
     @Test
     public void testConditionDeVictoire() {
         // Test la condition de victoire quand le joueur n'a plus de cartes
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         Joueur joueur = partie.getJoueurCourant();
         // le joueur courant a 7 cartes -> main de depart
         assertEquals(7, joueur.getDeck().size());
@@ -93,7 +93,7 @@ public class TestUno {
     @Test
     public void testConditionDeVictoireFause() {
         // Test la condition de victoire quand le joueur a encore des cartes -> la partie ne se termine pas
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         Joueur joueur = partie.getJoueurCourant();
         // le joueur courant a 7 cartes -> main de depart
         assertEquals(7, joueur.getDeck().size());
@@ -110,11 +110,11 @@ public class TestUno {
     @Test
     public void testRejoindrePartie() {
         // Test quand le joueur rejoinds des parties
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         Joueur joueur = partie.getJoueurCourant();
         // 1 partie
         assertEquals(1, joueur.getObservers().size());
-        Partie partie2 = new Partie(2);
+        Partie partie2 = new Partie(2, "joueurTest");
         joueur.rejoindrePartie(partie2);
         assertEquals(2, joueur.getObservers().size());
     }
@@ -122,7 +122,7 @@ public class TestUno {
     @Test
     public void testQuitterPartie() {
         // Test quand le joueur quitte une partie
-        Partie partie = new Partie(2);
+        Partie partie = new Partie(2, "joueurTest");
         Joueur joueur = partie.getJoueurCourant();
         joueur.quitterPartie(partie);
         assertEquals(0, joueur.getObservers().size());
