@@ -2,6 +2,7 @@ package uno.cartes;
 
 import uno.comportement.ComportementCarte;
 import uno.Partie;
+import uno.comportement.ComportementCarteCouleur;
 
 public class Carte {
     public enum Couleur {
@@ -64,11 +65,21 @@ public class Carte {
 
     @Override
     public String toString() {
-        return "Carte [couleur=" + couleur + ", valeur=" + valeur + ", action=" + comportementCarte + "]";
+        return "Carte [valeur=" + valeur + ", couleur=" + couleur + ", action=" + comportementCarte.toString() + "]";
     }
 
     public boolean isCarteJouable() {
         // vérifie si la carte est jouable
+        // première carte de la partie
+        if (partie.getCarteCourante() == null) {
+            return true;
+        }
+        // cas particulier de la carte couleur
+        if (partie.getCarteCourante().comportementCarte instanceof ComportementCarteCouleur){
+            System.out.println("test couleur");
+            return this.getCouleurString(this.getCouleur()) == partie.getCouleurCourante();
+        }
+        // autres cas
         return (
                 partie.getCarteCourante().getCouleur() == this.getCouleur()
                         || partie.getCarteCourante().getValeur() == this.getValeur()

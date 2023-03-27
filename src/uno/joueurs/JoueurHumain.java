@@ -4,6 +4,7 @@ import uno.Partie;
 import uno.cartes.Carte;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class JoueurHumain extends Joueur{
 
@@ -26,10 +27,21 @@ public class JoueurHumain extends Joueur{
     @Override
     public void jouerCarte() {
         // Methode tres basique pour tester le comportement des cartes
-        System.out.println("Joueur " + nom + " joue " + deck.get(0) + " " + deck.size() + " cartes restantes");
+        System.out.println("Voici vos cartes : ");
+        for (Carte carte : deck) {
+            System.out.println("Carte " + ( deck.indexOf(carte) + 1 ) + " :" + (carte));
+        }
 
-        deck.get(0).jouerCarte();
-        deck.remove(0);
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Quelle carte voulez-vous jouer ? (1-" + deck.size() + ")");
+        int choix = sc.nextInt();
+        if ( deck.get(choix-1).isCarteJouable()) {
+            System.out.println("Joueur " + nom + " joue " + deck.get(choix - 1) + " " + deck.size() + " cartes restantes");
+            deck.get(choix-1).jouerCarte();
+            deck.remove(choix-1);
+        } else {
+            System.out.println("Vous ne pouvez pas jouer cette carte");
+        }
 
         if (deck.size() == 0) notifyParties();
     }
