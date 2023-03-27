@@ -12,17 +12,18 @@ import java.util.ArrayList;
 
 public class Partie implements JoueurObserver {
 
-    private ArrayList<Joueur> joueurs;
-    private boolean estTerminee;
-    private Integer joueurCourant = 0;
-    private boolean sensRotationHoraire = true;
-    static private Plateau plateau;
+    private ArrayList<Joueur> joueurs; // liste des joueurs
+    private boolean estTerminee; // indique si la partie est terminée
+    private Integer joueurCourant = 0; // index du joueur courant
+    private boolean sensRotationHoraire = true; // sens de rotation des joueurs
+    static private Plateau plateau; // représente le plateau de jeu contenant les cartes
 
     static public Carte getCarte() {
         return plateau.getCarte();
     }
 
     public Partie(Integer nombreJoueurs) {
+        // initialise la partie avec le nombre de joueurs donné en paramètre
         System.out.println("Création de la partie");
 
         if (nombreJoueurs < 2) {
@@ -40,16 +41,17 @@ public class Partie implements JoueurObserver {
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
 
-            // subscribe les joueurs à la partie
+            // subscribe les joueurs à la partie en cours
             joueurs.get(i).rejoindrePartie(this);
 
-            // main de départ
+            // main de départ des joueurs
             for (int j = 0; j < 7; j++) {
                 joueurs.get(i).piocher();
             }
         }
     }
 
+    // lance la partie
     public void run() {
         while (!estTerminee) {
             joueurs.get(joueurCourant).jouerCarte();
@@ -59,7 +61,7 @@ public class Partie implements JoueurObserver {
 
     @Override
     public void update() {
-        // termine la partie si un joueur a gagné
+        // termine la partie si un joueur a gagné -> sa main est vide
 
         estTerminee = true;
         System.out.println("Partie terminée !");
@@ -71,10 +73,12 @@ public class Partie implements JoueurObserver {
     }
 
     public void setCarteCourante(Carte carte) {
+        // set la carte courante placer sur le plateau
         plateau.setCarteCourante(carte);
     }
 
     public Joueur getJoueurSuivant() {
+        // retourne le joueur suivant en fonction du sens de rotation
         Integer joueurSuivant;
         if (sensRotationHoraire) {
             joueurSuivant = (joueurCourant + 1);
@@ -87,10 +91,12 @@ public class Partie implements JoueurObserver {
     }
 
     public void inverserSensRotation() {
+        // inverse le sens de rotation des joueurs
         sensRotationHoraire = !sensRotationHoraire;
     }
 
     public void setJoueurSuivant() {
+        // set le joueur suivant en fonction du sens de rotation
         if (sensRotationHoraire) {
             joueurCourant++;
             if (joueurCourant >= joueurs.size()) joueurCourant = 0;
@@ -102,20 +108,21 @@ public class Partie implements JoueurObserver {
     }
 
     public Carte getCarteCourante() {
+        // retourne la carte courante du plateau
         return plateau.getCarteCourante();
     }
 
-    // use for testing purposes
+    // utilisé pour les tests
     public ArrayList<Joueur> getJoueurs() {
         return joueurs;
     }
 
-    // use for testing purposes
+    // utilisé pour les tests
     public Joueur getJoueurCourant() {
         return joueurs.get(joueurCourant);
     }
 
-    // use for testing purposes
+    // utilisé pour les tests
     public Plateau getPlateau() {
         return plateau;
     }

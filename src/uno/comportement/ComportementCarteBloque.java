@@ -12,6 +12,7 @@ public class ComportementCarteBloque implements ComportementCarte {
 
     @Override
     public void jouerCarte() {
+        // bloque le tour du joueur suivant
         System.out.println("Carte Bloque");
         partie.setJoueurSuivant();
     };
