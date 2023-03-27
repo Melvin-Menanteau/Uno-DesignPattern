@@ -166,34 +166,26 @@ public class Carte {
 
     // vérifie si une carte est jouable
     public boolean isCarteJouable() {
-        // les cartes spéciale noires sont toujours jouables Plus 4 et carte couleur
+        Couleur couleurCartePlateau = partie.getCarteCourante().getCouleur();
+        // les cartes spéciale noires sont toujours jouables -> Plus 4 et carte couleur
         if (this.getCouleur() == Couleur.NOIR) {
             return true;
         }
-        // cas particulier de la carte couleur sur le board
+        // cas particulier: quand la carte couleur est posé sur le board
         if (partie.getCarteCourante().comportementCarte instanceof ComportementCarteCouleur){
             return this.getCouleurString(this.getCouleur()) == partie.getCouleurCourante();
         }
-        // cas particulier de la carte bloque
-        if (this.getComportement() instanceof ComportementCarteBloque){
-            return partie.getCarteCourante().getCouleur() == this.getCouleur() || partie.getCarteCourante().getComportement()== this.getComportement()
-                    || partie.getCarteCourante().getCouleur() == Couleur.NOIR;
-        }
-        // cas particulier de la carte inversion
-        if (this.getComportement() instanceof ComportementCarteInversion){
-            return partie.getCarteCourante().getCouleur() == this.getCouleur() || partie.getCarteCourante().getComportement()== this.getComportement()
-                    || partie.getCarteCourante().getCouleur() == Couleur.NOIR;
-        }
-        // cas particulier de la carte plus 2
-        if (this.getComportement() instanceof ComportementCartePlus){
-            return partie.getCarteCourante().getCouleur() == this.getCouleur() || partie.getCarteCourante().getComportement()== this.getComportement()
-                    || partie.getCarteCourante().getCouleur() == Couleur.NOIR;
+        // cas particuliers des cartes bloque && carte inversion && carte plus 2
+        if (this.getComportement() instanceof ComportementCarteBloque ||
+                this.getComportement() instanceof ComportementCarteInversion ||
+                this.getComportement() instanceof ComportementCartePlus) {
+            return couleurCartePlateau == this.getCouleur() ||
+                    partie.getCarteCourante().getComportement() == this.getComportement() ||
+                    couleurCartePlateau == Couleur.NOIR;
         }
         // autres cas
-        return (
-                partie.getCarteCourante().getCouleur() == this.getCouleur()
-                        || partie.getCarteCourante().getValeur() == this.getValeur()
-                        || partie.getCarteCourante().getCouleur() == Couleur.NOIR
-        );
+        return (couleurCartePlateau == this.getCouleur() ||
+                partie.getCarteCourante().getValeur() == this.getValeur() ||
+                couleurCartePlateau == Couleur.NOIR);
     }
 }

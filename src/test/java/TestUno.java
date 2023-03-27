@@ -1,10 +1,12 @@
-import org.junit.jupiter.api.*;
+import org.junit.Test;
+
 import uno.Partie;
 import uno.cartes.Carte;
 import uno.cartes.CarteBuilder;
 import uno.joueurs.Joueur;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 public class TestUno {
 

@@ -55,10 +55,13 @@ public class Partie implements JoueurObserver {
 
         // carte de départ du plateau de jeu, doit être une carte normale
         plateau.setCarteCourante(getCarte());
-        while (plateau.getCarteCourante().getComportement() instanceof ComportementCarteNormal) {
+        boolean carteDepart = false;
+        while (!carteDepart) {
             plateau.setCarteCourante(getCarte());
+            if (plateau.getCarteCourante().getComportement().getType() == Carte.Action.NORMAL) {
+                carteDepart = true;
+            }
         }
-        plateau.setCarteCourante(getCarte());
         System.out.println("Carte de départ : " );
         plateau.getCarteCourante().drawCarte();
     }

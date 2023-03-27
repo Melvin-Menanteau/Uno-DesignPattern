@@ -11,7 +11,7 @@ public class ComportementCarteInversion implements ComportementCarte {
     }
     @Override
     public void jouerCarte() {
-        // inverse le sens de rotation des joueurs
+        // inverse le sens de rotation des joueurs avec 2 joueurs cette carte n'a aucun effet
         partie.inverserSensRotation();
     }
 

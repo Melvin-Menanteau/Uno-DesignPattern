@@ -26,11 +26,17 @@ public class ComportementCarteCouleur implements ComportementCarte {
             int randomIndex = rand.nextInt(colors.size());
             // récupère la couleur correspondant à l'index
             String color = colors.get(randomIndex);
+            System.out.println("La couleur de la prochaine carte est : " + color);
             partie.setCouleurCourante(color);
         } else {
             Scanner sc = new Scanner(System.in);
-            System.out.println("Choisissez une couleur parmis : rouge , bleu , jaune , vert");
-            String couleur = sc.nextLine();
+            String couleur = "";
+            // tant que l'utilisateur n'a pas entré une couleur valide
+            while(!couleur.equals("jaune") && !couleur.equals("bleu") && !couleur.equals("vert") && !couleur.equals("rouge")) {
+                System.out.print("Entrez une couleur (jaune, bleu, vert ou rouge) : ");
+                couleur = sc.nextLine();
+            }
+            System.out.println("La couleur de la prochaine carte est : " + couleur);
             partie.setCouleurCourante(couleur);
         }
 
