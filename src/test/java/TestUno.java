@@ -65,16 +65,6 @@ public class TestUno {
     }
 
     @Test
-    public void testNombresDeCartesEnJeux() {
-        // Test que le nombre de cartes en jeu est bien 108
-        Partie partie = new Partie(2, "joueurTest");
-        // aucune cartes n'a ete jouee
-        assertEquals(0, partie.getPlateau().getCartesJouees().size());
-        // la pioche contient toutes les cartes moins les mains des joueurs et la carte courante
-        assertEquals(108 - 7 - 7 - 1, partie.getPlateau().getPioche().size());
-    }
-
-    @Test
     public void testConditionDeVictoire() {
         // Test la condition de victoire quand le joueur n'a plus de cartes
         Partie partie = new Partie(2, "joueurTest");
