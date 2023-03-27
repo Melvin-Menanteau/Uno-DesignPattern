@@ -12,6 +12,9 @@ public class ComportementCartePlus implements ComportementCarte {
         this.partie = partie;
     }
 
+    public int getNbCartePlus() {
+        return nbCartePlus;
+    }
 
     @Override
     public void jouerCarte() {
