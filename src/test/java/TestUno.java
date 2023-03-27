@@ -1,6 +1,5 @@
-package uno;
-
 import org.junit.jupiter.api.*;
+import uno.Partie;
 import uno.cartes.Carte;
 import uno.cartes.CarteBuilder;
 import uno.joueurs.Joueur;
@@ -77,13 +76,16 @@ public class TestUno {
     public void testConditionDeVictoire() {
         // Test la condition de victoire quand le joueur n'a plus de cartes
         Partie partie = new Partie(2, "joueurTest");
-        Joueur joueur = partie.getJoueurCourant();
-        // le joueur courant a 7 cartes -> main de depart
+        Joueur joueur = partie.getJoueurSuivant();
+        // le joueur 2 a 7 cartes -> main de depart
         assertEquals(7, joueur.getDeck().size());
-        // le joueur courant joue toutes ses cartes
-        for (int i = 0; i < 7; i++) {
-            joueur.jouerCarte();
+        // le joueur 2 defausse toutes ses cartes sauf une pour pouvoir la jouer a tous les coups après
+        for (int i = 0; i < 6; i++) {
+            joueur.getDeck().remove(0);
         }
+        // le joueur joue ca dernière carte et déclenche le update car son deck est vide.
+        joueur.jouerCarte();
+
         // le joueur courant a 0 cartes
         assertEquals(0, joueur.getDeck().size());
         // le joueur courant a gagne
@@ -94,16 +96,16 @@ public class TestUno {
     public void testConditionDeVictoireFause() {
         // Test la condition de victoire quand le joueur a encore des cartes -> la partie ne se termine pas
         Partie partie = new Partie(2, "joueurTest");
-        Joueur joueur = partie.getJoueurCourant();
-        // le joueur courant a 7 cartes -> main de depart
+        Joueur joueur = partie.getJoueurSuivant(); // joueur robot
+        // le joueur 2 a 7 cartes -> main de depart
         assertEquals(7, joueur.getDeck().size());
-        // le joueur courant joue cinque de ses cartes
+        // le joueur 2 defausse 5 de ses 7 cartes
         for (int i = 0; i < 5; i++) {
-            joueur.jouerCarte();
+            joueur.getDeck().remove(0);
         }
-        // le joueur courant a 2 cartes
+        // le joueur 2 a 2 cartes
         assertEquals(2, joueur.getDeck().size());
-        // le joueur courant n'a pas gagne -> partie toujours en cours
+        // le joueur 2 n'a pas gagne -> partie toujours en cours
         assertFalse(partie.isEstTerminee());
     }
 

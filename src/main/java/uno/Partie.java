@@ -39,7 +39,7 @@ public class Partie implements JoueurObserver {
         // création des joueurs
         for (int i = 0; i < nombreJoueurs; i++) {
             if (i == 0)
-                joueurs.add(new JoueurHumain(nomJoueur ));
+                joueurs.add(new JoueurHumain(nomJoueur));
             else
                 joueurs.add(new JoueurRobot("Robot " + (i + 1)));
 
