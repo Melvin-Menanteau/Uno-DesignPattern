@@ -1,6 +1,7 @@
 package uno.comportement;
 
 import uno.Partie;
+import uno.cartes.Carte;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,5 +34,12 @@ public class ComportementCarteCouleur implements ComportementCarte {
             partie.setCouleurCourante(couleur);
         }
 
-    };
+    }
+
+    @Override
+    public Carte.Action getType() {
+        return Carte.Action.COULEUR;
+    }
+
+    ;
 }

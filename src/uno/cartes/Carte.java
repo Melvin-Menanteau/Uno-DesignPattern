@@ -91,58 +91,66 @@ public class Carte {
 
     public void drawCarte() {
         String[] dessin = null;
-        if (comportementCarte instanceof ComportementCarteNormal) {
-            dessin = new String[]{
-                    "+-------+",
-                    "| " + valeur + "     |",
-                    "|       |",
-                    "|       |",
-                    "|       |",
-                    "|     " + valeur + " |",
-                    "+-------+"
-            };
-        } else  if (comportementCarte instanceof ComportementCarteCouleur) {
-            dessin = new String[]{
-                    "+-------+",
-                    "|       |",
-                    "| COLOR |",
-                    "|       |",
-                    "| CARD  |",
-                    "|       |",
-                    "+-------+"
-            };
-        } else if (comportementCarte instanceof ComportementCarteBloque) {
-            dessin = new String[]{
-                    "+-------+",
-                    "|       |",
-                    "| BLOCK |",
-                    "|       |",
-                    "| CARD  |",
-                    "|       |",
-                    "+-------+"
-            };
-        } else if (comportementCarte instanceof ComportementCarteInversion) {
-            dessin = new String[]{
-                    "+-------+",
-                    "|       |",
-                    "| SWITCH|",
-                    "|       |",
-                    "| CARD  |",
-                    "|       |",
-                    "+-------+"
-            };
-
-        } else if (comportementCarte instanceof ComportementCartePlus) {
-            String nbPlus = Integer.toString( ((ComportementCartePlus) comportementCarte).getNbCartePlus() );
-            dessin = new String[]{
-                    "+-------+",
-                    "|       |",
-                    "| PLUS  |",
-                    "|  " + nbPlus + "    |",
-                    "| CARD  |",
-                    "|       |",
-                    "+-------+"
-            };
+        switch (comportementCarte.getType()) {
+            case NORMAL:
+                dessin = new String[]{
+                        "+-------+",
+                        "| " + valeur + "     |",
+                        "|       |",
+                        "|       |",
+                        "|       |",
+                        "|     " + valeur + " |",
+                        "+-------+"
+                };
+                break;
+            case COULEUR:
+                dessin = new String[]{
+                        "+-------+",
+                        "|       |",
+                        "| COLOR |",
+                        "|       |",
+                        "| CARD  |",
+                        "|       |",
+                        "+-------+"
+                };
+                break;
+            case BLOQUE:
+                dessin = new String[]{
+                        "+-------+",
+                        "|       |",
+                        "| BLOCK |",
+                        "|       |",
+                        "| CARD  |",
+                        "|       |",
+                        "+-------+"
+                };
+                break;
+            case INVERSION:
+                dessin = new String[]{
+                        "+-------+",
+                        "|       |",
+                        "| SWITCH|",
+                        "|       |",
+                        "| CARD  |",
+                        "|       |",
+                        "+-------+"
+                };
+                break;
+            case PLUS2:
+            case PLUS4:
+                int nbPlus = ((ComportementCartePlus) comportementCarte).getNbCartePlus();
+                dessin = new String[]{
+                        "+-------+",
+                        "|       |",
+                        "| PLUS  |",
+                        "|  " + nbPlus + "    |",
+                        "| CARD  |",
+                        "|       |",
+                        "+-------+"
+                };
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + comportementCarte.getType());
         }
 
         // couleur de la carte
