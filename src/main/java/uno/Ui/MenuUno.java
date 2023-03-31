@@ -1,4 +1,6 @@
 package uno.Ui;
+import uno.Partie;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -81,8 +83,10 @@ public class MenuUno extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String playerName = nameField.getText();
-                int robotCount = (Integer) robotComboBox.getSelectedItem();}
-            // todo
+                int robotCount = (Integer) robotComboBox.getSelectedItem();
+                Partie partie = new Partie(robotCount,playerName);
+                // todo launch the view of the partie with the partie as argument
+            }
         });
     }
 
