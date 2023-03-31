@@ -1,6 +1,7 @@
 package uno.comportement;
 
 import uno.Partie;
+import uno.cartes.Carte;
 
 public class ComportementCarteBloque implements ComportementCarte {
 
@@ -12,7 +13,14 @@ public class ComportementCarteBloque implements ComportementCarte {
 
     @Override
     public void jouerCarte() {
-        System.out.println("Carte Bloque");
+        // bloque le tour du joueur suivant
         partie.setJoueurSuivant();
-    };
+    }
+
+    @Override
+    public Carte.Action getType() {
+        return Carte.Action.BLOQUE;
+    }
+
+    ;
 }

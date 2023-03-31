@@ -1,6 +1,7 @@
 package uno.comportement;
 
 import uno.Partie;
+import uno.cartes.Carte;
 
 public class ComportementCarteInversion implements ComportementCarte {
     private Partie partie;
@@ -10,7 +11,14 @@ public class ComportementCarteInversion implements ComportementCarte {
     }
     @Override
     public void jouerCarte() {
-        System.out.println("Carte Inversion");
+        // inverse le sens de rotation des joueurs avec 2 joueurs cette carte n'a aucun effet
         partie.inverserSensRotation();
-    };
+    }
+
+    @Override
+    public Carte.Action getType() {
+        return Carte.Action.INVERSION;
+    }
+
+    ;
 }

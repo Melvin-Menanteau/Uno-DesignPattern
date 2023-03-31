@@ -1,6 +1,7 @@
 package uno.comportement;
 
 import uno.Partie;
+import uno.cartes.Carte;
 import uno.joueurs.Joueur;
 
 public class ComportementCartePlus implements ComportementCarte {
@@ -12,15 +13,22 @@ public class ComportementCartePlus implements ComportementCarte {
         this.partie = partie;
     }
 
+    public int getNbCartePlus() {
+        return nbCartePlus;
+    }
 
     @Override
     public void jouerCarte() {
-        // fais piocher au joueur suivant
-        System.out.println("Carte Plus");
+        // Fais piocher le joueur suivant
         Joueur joueurSuivant = partie.getJoueurSuivant();
 
         for (int i = 0; i < nbCartePlus; i++) {
             joueurSuivant.piocher();
         }
+    }
+
+    @Override
+    public Carte.Action getType() {
+        return Carte.Action.PLUS2;
     }
 }
