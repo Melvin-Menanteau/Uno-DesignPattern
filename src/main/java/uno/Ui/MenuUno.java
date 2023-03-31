@@ -20,20 +20,20 @@ public class MenuUno extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Créer un panneau principal avec un BorderLayout
-        JPanel mainPanel = new JPanel(new BorderLayout());
-        super.add(mainPanel);
+        JPanel menuPanel = new JPanel(new BorderLayout());
+        super.add(menuPanel);
 
         // Ajouter le titre centré en haut du panneau principal
         JLabel titleLabel = new JLabel("Menu Uno", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Serif", Font.BOLD, 24));
-        mainPanel.add(titleLabel, BorderLayout.NORTH);
+        menuPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Ajouter une bordure vide de 10 pixels en haut du titre
         titleLabel.setBorder(BorderFactory.createEmptyBorder(50, 0, 0, 0));
 
         // Ajouter un panneau pour les labels et les champs de texte
         JPanel formPanel = new JPanel(new GridBagLayout());
-        mainPanel.add(formPanel, BorderLayout.CENTER);
+        menuPanel.add(formPanel, BorderLayout.CENTER);
 
         // Ajouter les labels et les champs de texte avec un GridBagConstraints personnalisé
         GridBagConstraints gbc = new GridBagConstraints();
@@ -84,8 +84,29 @@ public class MenuUno extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String playerName = nameField.getText();
                 int robotCount = (Integer) robotComboBox.getSelectedItem();
-                Partie partie = new Partie(robotCount,playerName);
-                // todo launch the view of the partie with the partie as argument
+
+                // Check if the name field is empty
+                if (playerName.trim().isEmpty()) {
+                    // Show an error message and return
+                    JOptionPane.showMessageDialog(menuPanel,
+                            "Veuillez entrer un nom de joueur.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                Partie partie = new Partie(robotCount + 1,playerName);
+                
+                // Instantiate a new JFrame for the Partie Uno view
+                JFrame partieUnoFrame = new JFrame("Partie Uno");
+                // Set the size and position of the frame
+                partieUnoFrame.setSize(1000, 800);
+                partieUnoFrame.setLocationRelativeTo(null);
+                // Set the content pane of the frame to the PartieUnoPanel
+                partieUnoFrame.setContentPane(new PartieUnoPanel(partie));
+                // Make the frame visible
+                partieUnoFrame.setVisible(true);
+
+                // Hide the current frame
+                setVisible(false);
             }
         });
     }
