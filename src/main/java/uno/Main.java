@@ -15,7 +15,6 @@ public class Main {
 
         String nom = scanner.next();
 
-
         // Creer la partie et la lance
         Partie partie = new Partie(nbJoueurs,nom);
         partie.run();

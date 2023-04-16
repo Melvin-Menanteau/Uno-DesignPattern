@@ -1,7 +1,6 @@
 # Uno-DesignPattern
 
 ##### AUGER-DUBOIS Benoît - MENANTEAU Melvin
-SDK 17
 
 ## Design Patterns utilisés
 
@@ -31,3 +30,18 @@ Crée et une retourne une carte avec la configuration souhaitée.
 Permet au joueur de notifier la partie qu'il n'a plus de cartes et qu'il a donc gagné.
 
 ![Diagramme UML Observer](img/DesignPattern_Observer.png "Diagramme UML Observer")
+
+## Exécuter le projet
+
+### Prérequis
+SDK 17
+
+### Commandes
+
+```bash
+javac -d "build" -cp "./src/main/*" .\src\main\java\uno\Main.java
+```
+
+```bash
+java -classpath "./build/" uno.Main
+```
