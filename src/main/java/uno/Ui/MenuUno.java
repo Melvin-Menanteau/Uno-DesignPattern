@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class MenuUno extends JFrame {
     private JLabel titleLabel;
@@ -101,7 +102,11 @@ public class MenuUno extends JFrame {
                 partieUnoFrame.setSize(1000, 800);
                 partieUnoFrame.setLocationRelativeTo(null);
                 // Set the content pane of the frame to the PartieUnoPanel
-                partieUnoFrame.setContentPane(new PartieUnoPanel(partie));
+                try {
+                    partieUnoFrame.setContentPane(new PartieUnoPanel(partie));
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 // Make the frame visible
                 partieUnoFrame.setVisible(true);
 

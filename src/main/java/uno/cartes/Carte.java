@@ -188,4 +188,9 @@ public class Carte {
                 partie.getCarteCourante().getValeur() == this.getValeur() ||
                 couleurCartePlateau == Couleur.NOIR);
     }
+
+    public String getImagePath(){
+        return "src/main/resources/uno/cartes/reverseCard.png";
+        // return "src/main/resources/uno/cartes/" + this.getCouleurString(this.getCouleur()) + "/" + this.getValeur() + ".png";
+    }
 }

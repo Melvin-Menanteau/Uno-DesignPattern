@@ -42,7 +42,7 @@ public class Partie implements JoueurObserver {
             if (i == 0)
                 joueurs.add(new JoueurHumain(nomJoueur));
             else
-                joueurs.add(new JoueurRobot("Robot " + (i + 1)));
+                joueurs.add(new JoueurRobot("Robot " + (i)));
 
             // subscribe les joueurs à la partie en cours
             joueurs.get(i).rejoindrePartie(this);
